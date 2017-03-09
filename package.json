@@ -1,0 +1,23 @@
+{
+  "name": "hacknight-2017-refugee",
+  "version": "1.0.0",
+  "description": "- Refugee News Aggregator - Asylum Application Generator - Overseas Money Transfer Utility - Redesign of the Humanwire Go! Checkout UX - Data Science Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuffieh/hacknight-2017-refugee.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuffieh/hacknight-2017-refugee/issues"
+  },
+  "homepage": "https://github.com/yuffieh/hacknight-2017-refugee#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
