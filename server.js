@@ -15,37 +15,42 @@ app.use(function(req, res, next) {
 	next();
 });
 
-function getArticles(query) {
-  query = query || 'refugee'
+function getArticles(query, page) {
+  query = query || 'refugee';
+  page = page || 0;
   var articles = [];
   request.get({
     url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
     qs: {
       'api-key': "fa3d1b231c1e42149ce9c29c797c6457",
-      'q': query
+      'q': query,
+      'page': page
     },
   }, function(err, res, body) {
-    body = JSON.parse(body)
-    docs = body.response.docs
+    body = JSON.parse(body);
+    var docs = body.response.docs;
     docs.forEach((doc) => {
-      var image;
-      if (doc.multimedia.length > 0) {
-        image = 'http://www.nytimes.com/' + doc.multimedia[0].url
+      for(kw in doc.keywords) {
+        var keep = true;
+        if (doc.keywords[kw].name === 'glocations') {
+
+          var image;
+          if (doc.multimedia.length > 0) {
+            image = 'http://www.nytimes.com/' + doc.multimedia[0].url
+          }
+          var article = {
+            url: doc.web_url,
+            snippet: doc.lead_paragraph,
+            source: doc.source,
+            title: doc.headline.main,
+            pubDate: doc.pub_date,
+            image: image,
+            location: doc.keywords[kw].value
+          }
+          articles.push(article);
+          break;
+        } 
       }
-      var keywords = [];
-      for (keyword in doc.keywords) {
-        keywords.push(doc.keywords[keyword].value);
-      }
-      var article = {
-        url: doc.web_url,
-        snippet: doc.lead_paragraph,
-        source: doc.source,
-        title: doc.headline.main,
-        pubDate: doc.pub_date,
-        image: image,
-        keywords: keywords
-      }
-      articles.push(article);
     })
   })
   return articles;
