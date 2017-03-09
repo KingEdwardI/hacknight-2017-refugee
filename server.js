@@ -42,13 +42,12 @@ function getArticles(query) {
       }
       articles.push(article);
     })
-    return articles;
   })
+  return articles;
 }
 
 app.get('/articles', function(req, res) {
   var articles = getArticles();
-  console.log(articles)
   setTimeout(function() {
   res.status(200).send(JSON.stringify(articles));
   }, 1000)

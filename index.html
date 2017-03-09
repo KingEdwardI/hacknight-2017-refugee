@@ -8,7 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-  <h1>test</h1>
+  <h1 class='button'>click</h1>
+
+
+  <script>
+    $('.button').click(function() {
+      $.get('http://localhost:8000/articles', function(data, status) {
+         console.log('DATA: ', data) 
+      });
+    })
+  </script>
 
 </body>
 </html>
