@@ -15,8 +15,14 @@ function appendText(imageURL,title, author,date, content, docLink){
    var contentDiv =  "<div class='col-md-4' id='texxxt'><span id='title'><h2><a href='" + docLink+ "'>" + title + "</a></h2></span><br><span id='author'>" + author + "</span><br><span><sub>" + date + "</sub></span><br><br><span id='article'>" + content + "</span></div>" ;  
 
 
-   var box = "<div class='row'>" + imageDiv + contentDiv + "</div>"
+   var box = "<div class='row' id='"+ docLink + "'>" + imageDiv + contentDiv + "</div>"
    $("#container").append(box);      // Append the new elements
+
+        var link = "<a href='#" + docLink + "'>" + title + "</a>";
+            
+            $('#mySidenav').append(link);
+
+
 }
 
 
@@ -25,15 +31,18 @@ $( document ).ready(function(){
 
     $.get('http://localhost:8000/articles', function(data, status) {
          for(var obj of data){
+             if(obj.title.length > 30){
+                var title = obj.title.split("");
+                title = title.splice(0, 30).join("");
+                obj.title = title + "....";
+             }
             if(obj.image){
                 appendText(obj.image, obj.title, obj.source, obj.pubDate, obj.snippet, obj.url);
             }else{
                 appendText("http://cdn.dailyheadlines.net/wp-content/uploads/2016/12/f41a8570f98033234e38d8be706b27c6.jpg", obj.title, obj.source, obj.pubDate, obj.snippet, obj.url);
             }
 
-            var link = "<a href='" + obj.url + "'>" + obj.title + "</a>";
-            
-            $('#mySidenav').append(link);
+
         
          }
     });
