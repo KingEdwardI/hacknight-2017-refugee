@@ -34,7 +34,6 @@ function getArticles(query) {
       }
       var keywords = [];
       for (keyword in doc.keywords) {
-        console.log(doc.keywords[keyword].value)
         keywords.push(doc.keywords[keyword].value);
       }
       var article = {
@@ -64,7 +63,6 @@ app.get("/", function(req, res) {
 });
 
 app.use(express.static("public"));
-// app.use(express.static("joey"));
 
 app.use(function(req, res, next) {
 	res.status(404);
