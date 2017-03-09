@@ -31,17 +31,17 @@ request.get({
   articles = [];
   docs = body.response.docs
   docs.forEach((doc) => {
+    var image;
+    if (doc.multimedia.length > 0) {
+      image = 'http://www.nytimes.com/' + doc.multimedia[0].url
+    }
     var article = {
       url: doc.web_url,
       snippet: doc.lead_paragraph,
       source: doc.source,
       title: doc.headline.main,
       pubDate: doc.pub_date,
-      images: doc.multimedia.find((i) => {
-        if (i.type === 'image') {
-          return i.url;
-        }
-      })
+      image: image,
     }
     console.log(article);
   })
