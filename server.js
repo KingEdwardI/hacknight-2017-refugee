@@ -32,6 +32,11 @@ function getArticles(query) {
       if (doc.multimedia.length > 0) {
         image = 'http://www.nytimes.com/' + doc.multimedia[0].url
       }
+      var keywords = [];
+      for (keyword in doc.keywords) {
+        console.log(doc.keywords[keyword].value)
+        keywords.push(doc.keywords[keyword].value);
+      }
       var article = {
         url: doc.web_url,
         snippet: doc.lead_paragraph,
@@ -39,6 +44,7 @@ function getArticles(query) {
         title: doc.headline.main,
         pubDate: doc.pub_date,
         image: image,
+        keywords: keywords
       }
       articles.push(article);
     })
@@ -49,7 +55,7 @@ function getArticles(query) {
 app.get('/articles', function(req, res) {
   var articles = getArticles();
   setTimeout(function() {
-  res.status(200).send(JSON.stringify(articles));
+  res.status(200).send(articles);
   }, 1000)
 })
 
