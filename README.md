@@ -1,3 +1,10 @@
+## PROJECT HACK BY
+- JOHN O'NEIL
+- KENDRA (CO0P) COOPER
+- EDWARD VETTER-DRAKE
+- JESSE TELLEZ
+- SARAH HUYNH   
+
 ## Hack Night Challenges
 
 - Refugee News Aggregator
@@ -20,9 +27,9 @@ Make a pull request to this Github repo with your work or email your code/outcom
 
 Problem: Currently, there are no industry authorities or name-brand journalistic outlets for refugee-related news digests.
 
-Solution: Devise an aggregate feed or build a simple aggregator for refugee-related news (think headlines, photo, description in order of time & popularity) for supporters and industry NGOs. Use RSS or JSON (or build a scraper/crawler) to collect updated story links from a predefined set of sources. 
+Solution: Devise an aggregate feed or build a simple aggregator for refugee-related news (think headlines, photo, description in order of time & popularity) for supporters and industry NGOs. Use RSS or JSON (or build a scraper/crawler) to collect updated story links from a predefined set of sources.
 
-Additional feature considerations: 
+Additional feature considerations:
 Rank: Collect FB likes, favorites, twitter mentions, etc. to rank links by popularity of the day; check each story/link against all predefined sources to gauge authority based on number of sources that cite link.
 Subscribe: Allow subscription via RSS, email digest, twitter follow, app, etc.
 Curate: Allow for manual removal and addition of stories and sources.
